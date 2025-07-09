@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { Request } from 'express';
 
@@ -15,5 +15,12 @@ export class CarsController {
   @Post()
   create(): string {
     return 'This action adds a new car';
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): string {
+    const carId = id;
+    console.log('Car ID:', carId);
+    return `This action returns a #${carId} car`;
   }
 }
